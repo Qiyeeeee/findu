@@ -20,4 +20,10 @@
     <insert id="registerUser" parameterType="com.cpt202.cw1.findu.pojo.User">
         INSERT INTO user(email,name,password) VALUES(#{email},#{name},#{password})
     </insert>
+    <update id="changePassword" parameterType="com.cpt202.cw1.findu.pojo.User">
+        update user set password = #{password} where email = #{email}
+    </update>
+    <update id="changeName" parameterType="com.cpt202.cw1.findu.pojo.User">
+        update user set name = #{name} where email = #{email}
+    </update>
 </mapper>

@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cpt202.cw1.findu.mapper.InfoMapper">
     <resultMap id="BaseResultMap" type="com.cpt202.cw1.findu.pojo.Info" >
+        <result column="email" property="email" />
         <result column="name" property="name" />
         <result column="gender" property="gender" />
         <result column="department" property="department" />
@@ -15,7 +16,16 @@
     <select id="findByName" resultMap="BaseResultMap">
         select * from info where name = #{name}
     </select>
+    <select id="findByEmail" resultMap="BaseResultMap">
+        select * from info where email = #{email}
+    </select>
     <select id="findAll" resultMap="BaseResultMap">
         select * from info
     </select>
+    <update id="changeName" parameterType="com.cpt202.cw1.findu.pojo.Info">
+        update info set name = #{name} where email = #{email}
+    </update>
+    <insert id="fillInfo" parameterType="com.cpt202.cw1.findu.pojo.Info">
+        INSERT INTO info(email,name,gender,department,grade,routine,contact,description) VALUES(#{email},#{name},#{gender},#{department},#{grade},#{routine},#{contact},#{description})
+    </insert>
 </mapper>

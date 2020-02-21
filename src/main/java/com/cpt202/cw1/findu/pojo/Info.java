@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Info implements Serializable {
     private static final long serialVersionUID = 1L;
+    private String email;
     private String name;
     private String gender;
     private String department;
@@ -15,7 +16,8 @@ public class Info implements Serializable {
     public Info() {
     }
 
-    public Info(String name,  String gender, String department, String grade, String routine, String contact, String description) {
+    public Info(String email,String name,  String gender, String department, String grade, String routine, String contact, String description) {
+        this.email =email;
         this.name = name;
         this.gender = gender;
         this.department = department;
@@ -27,6 +29,14 @@ public class Info implements Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {

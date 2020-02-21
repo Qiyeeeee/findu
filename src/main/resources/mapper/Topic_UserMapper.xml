@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpt202.cw1.findu.mapper.Topic_UserMapper">
+    <resultMap id="BaseResultMap" type="com.cpt202.cw1.findu.pojo.Topic_User" >
+        <result column="email" property="email" />
+        <result column="topic_id" property="topic_id" />
+    </resultMap>
+
+    <insert id="confirm" parameterType="com.cpt202.cw1.findu.pojo.Topic_User">
+        INSERT INTO topic_user VALUES (#{email},#{topic_id});
+    </insert>
+
+    <select id="selectByTopicId" resultType="java.lang.String">
+        select email from topic_user where topic_id = #{topic_id}
+    </select>
+
+    <select id="selectAllUser" resultType="java.lang.String">
+        select email from topic_user
+    </select>
+
+
+
+</mapper>
