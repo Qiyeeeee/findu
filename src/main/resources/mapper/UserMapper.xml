@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpt202.cw1.findu.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.cpt202.cw1.findu.pojo.User" >
+        <result column="email" property="email" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+    </resultMap>
+    <select id="findByEmail" resultMap="BaseResultMap">
+        select * from user where email = #{email}
+    </select>
+    <select id="findByName" resultMap="BaseResultMap">
+        select * from user where name = #{name}
+    </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from user
+    </select>
+    <insert id="registerUser" parameterType="com.cpt202.cw1.findu.pojo.User">
+        INSERT INTO user(email,name,password) VALUES(#{email},#{name},#{password})
+    </insert>
+</mapper>

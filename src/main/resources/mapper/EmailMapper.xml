@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpt202.cw1.findu.mapper.EmailMapper">
+    <resultMap id="BaseResultMap" type="com.cpt202.cw1.findu.pojo.Email" >
+        <result column="email" property="email" />
+        <result column="code" property="code" />
+        <result column="dateStr" property="dateStr" />
+    </resultMap>
+    <select id="findByEmail" resultMap="BaseResultMap">
+        select * from email where email = #{email}
+    </select>
+    <select id="check_email" resultMap="BaseResultMap">
+        select * from user where email = #{email}
+    </select>
+    <select id="check_time" resultMap="BaseResultMap">
+        select * from email where email = #{email}
+    </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from email
+    </select>
+    <insert id="saveInfo" parameterType="com.cpt202.cw1.findu.pojo.Email">
+        INSERT INTO email(email,code,dateStr) VALUES(#{email},#{code},#{dateStr})
+    </insert>
+    <update id="updateInfo" parameterType="com.cpt202.cw1.findu.pojo.Email">
+        update email set code = #{code},dateStr = #{dateStr} where email = #{email}
+    </update>
+    <delete id="del" parameterType="com.cpt202.cw1.findu.pojo.Email">
+        delete from email where email = #{email}
+    </delete>
+</mapper>
