@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpt202.cw1.findu.mapper.ApplicationMapper">
+    <resultMap id="BaseResultMap" type="com.cpt202.cw1.findu.pojo.Application" >
+        <result column="email" property="email" />
+        <result column="topic_id" property="topic_id" />
+        <result column="introduction" property="introduction" />
+        <result column="applytime" property="applytime" />
+        <result column="state" property="state" />
+    </resultMap>
+
+    <insert id="apply" parameterType="com.cpt202.cw1.findu.pojo.Application">
+        INSERT INTO application VALUES (#{email},#{topic_id},#{introduction},#{applytime},#{state});
+    </insert>
+
+    <select id="selecIdByEmail" resultType="java.lang.Integer">
+        select topic_id from application where email = #{email}
+    </select>
+
+    <select id="selecByTopicId" resultType="java.lang.String">
+        select email from application where topic_id = #{topic_id}
+    </select>
+
+    <select id="selecAllByTopicIdAndEmail" resultMap="BaseResultMap">
+        select * from application where topic_id = #{topic_id} and email = #{email}
+    </select>
+
+    <delete id="deleteApplication" parameterType="com.cpt202.cw1.findu.pojo.Application">
+        delete from application where email = #{email}
+    </delete>
+
+    <select id="selecAllByEmail" resultMap="BaseResultMap">
+        select * from application where email = #{email}
+    </select>
+
+    <update id="approve" parameterType="com.cpt202.cw1.findu.pojo.Application">
+        update application set state = 1 where topic_id = #{topic_id} and email = #{email}
+    </update>
+
+    <update id="reject" parameterType="com.cpt202.cw1.findu.pojo.Application">
+        update application set state = 2 where topic_id = #{topic_id} and email = #{email}
+    </update>
+
+    <select id="selectEmail" resultType="java.lang.String">
+        select email from application
+    </select>
+
+    <select id="selectState" resultType="java.lang.Integer">
+        select state from application where topic_id = #{topic_id} and email = #{email}
+    </select>
+
+    <select id="selectApplytime" resultType="java.lang.String">
+        select applytime from application where topic_id = #{topic_id} and email = #{email}
+    </select>
+
+
+</mapper>

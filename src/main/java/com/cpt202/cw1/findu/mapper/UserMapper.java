@@ -11,4 +11,6 @@ public interface UserMapper {
     User findByName(String name);
     List<User> findAll();
     void registerUser(String email,String name,String password);
+    void changePassword(String email,String password);
+    void changeName(String email,String name);
 }

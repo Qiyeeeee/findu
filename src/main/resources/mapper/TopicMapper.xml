@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpt202.cw1.findu.mapper.TopicMapper">
+    <resultMap id="BaseResultMap" type="com.cpt202.cw1.findu.pojo.Topic" >
+        <result column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="post_time" property="post_time" />
+        <result column="create_by" property="create_by" />
+        <result column="gender" property="gender" />
+        <result column="routine" property="routine" />
+        <result column="location" property="location" />
+        <result column="user_number" property="user_number" />
+        <result column="body" property="body" />
+    </resultMap>
+
+    <insert id="creatNewTopic" parameterType="com.cpt202.cw1.findu.pojo.Topic">
+        INSERT INTO topic(title,post_time,create_by,gender,routine,location,user_number,body) VALUES (#{title},#{post_time},#{create_by},#{gender},#{routine},#{location},#{user_number},#{body});
+    </insert>
+
+    <select id="selectCreatorEmail" resultType="java.lang.String">
+        select create_by from topic
+    </select>
+
+    <select id="topic_findByCreator" resultMap="BaseResultMap">
+        select * from topic where create_by = #{create_by}
+    </select>
+
+    <select id="topic_findById" resultMap="BaseResultMap">
+        select * from topic where id = #{id}
+    </select>
+
+    <select id="selectNoNull" resultMap="BaseResultMap">
+        select * from topic where routine = #{routine} and gender = #{gender} and location = #{location}
+    </select>
+
+    <select id="selectAllNull" resultMap="BaseResultMap">
+        select * from topic where gender = #{gender}
+    </select>
+
+    <select id="selectRoutineNull" resultMap="BaseResultMap">
+        select * from topic where gender = #{gender} and location = #{location}
+    </select>
+
+    <select id="selectLocationNull" resultMap="BaseResultMap">
+        select * from topic where routine = #{routine} and gender = #{gender}
+    </select>
+
+
+</mapper>
